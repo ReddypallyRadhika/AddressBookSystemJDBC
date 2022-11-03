@@ -8,11 +8,7 @@ import java.util.Scanner;
 public class AddressBookDirectory implements AddressBookDirectoryIF{
     public AddressBook addressBook;
     Scanner scannerObject=new Scanner(System.in);
-    Map<String,AddressBook> addressBookDirectory=new HashMap<String ,AddressBook>();
-
-    public enum IOService{
-        CONSOLE_IO,FILE_IO,DB_IO,REST_IO
-    }
+    Map<String,AddressBook> addressBookDirectory=new HashMap<>();
 
     @Override
     public void operationDirectory() {
@@ -20,48 +16,40 @@ public class AddressBookDirectory implements AddressBookDirectoryIF{
         do{
             System.out.println("\nChoose the operation on the directory you want to perform");
             System.out.println("1.Add on Address Book\n2.Edit Existing Address Book\n3.Search Person By Region\n4.View People By Region\n3.Count People By Region");
-            switch (scannerObject.nextInt()){
-                case 1:
-                    addAddressBook();
-                    break;
-                case 2:
-                    editAddressBook();
-                    break;
-                case 3:
+            switch (scannerObject.nextInt()) {
+                case 1 -> addAddressBook();
+                case 2 -> editAddressBook();
+                case 3 -> {
                     System.out.println("Enter \n1.Search By City\n2.Search By State");
-                    int searchChoice=scannerObject.nextInt();
-                    if (searchChoice==1){
-                       searchByCity();
-                    }
-                    else {
+                    int searchChoice = scannerObject.nextInt();
+                    if (searchChoice == 1) {
+                        searchByCity();
+                    } else {
                         searchByState();
                     }
-                        break;
-                    case 4:
-                  System.out.println("Enter \n1.Display By City\n2.Display By State");
-                  int displayChoice=scannerObject.nextInt();
-                  if(displayChoice==1) {
-                      displayPeopleByRegion(AddressBook.personByCity);
-                  }
-                  else {
-                      displayPeopleByRegion(AddressBook.personByState);
-                  }
-                    break;
-                case 5:
+                }
+                case 4 -> {
                     System.out.println("Enter \n1.Display By City\n2.Display By State");
-                    int countChoice=scannerObject.nextInt();
-                    if(countChoice==1) {
-                        countPeopleByRegion(AddressBook.personByCity);
+                    int displayChoice = scannerObject.nextInt();
+                    if (displayChoice == 1) {
+                        displayPeopleByRegion(AddressBook.personByCity);
+                    } else {
+                        displayPeopleByRegion(AddressBook.personByState);
                     }
-                    else
+                }
+                case 5 -> {
+                    System.out.println("Enter \n1.Display By City\n2.Display By State");
+                    int countChoice = scannerObject.nextInt();
+                    if (countChoice == 1) {
+                        countPeopleByRegion(AddressBook.personByCity);
+                    } else
                         countPeopleByRegion(AddressBook.personByState);
-                    break;
-                case 6:
-                    displayDirectoryContents();
-                    break;
-                case 7:
-                    moreChanges=false;
+                }
+                case 6 -> displayDirectoryContents();
+                case 7 -> {
+                    moreChanges = false;
                     System.out.println("Exiting Address Book Directory !");
+                }
             }
         }while(moreChanges);
     }

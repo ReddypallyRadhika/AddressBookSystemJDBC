@@ -1,12 +1,35 @@
 package com.bridgeLabz;
 
+import com.opencsv.bean.CsvBindAndJoinByName;
+import com.opencsv.bean.CsvBindByName;
+
 import java.util.Objects;
 
 public class ContactPerson {
+  //  @CsvBindByName
     private String firstName;
-    private String lastName,email;
+
+    private String lastName;
+
+    private String email;
+  //  @CsvBindByName(column="phoneNumber",required=true)
     private long phoneNumber;
+   // @CsvBindByName
     private Address address;
+
+
+
+    public ContactPerson(String firstName, String lastName, String email, long phoneNumber, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+    public ContactPerson() {
+
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -47,6 +70,12 @@ public class ContactPerson {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+   /* public String getLastName() {
+        return lastName;
+    }
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }*/
 
     public Address getAddress() {
         return address;

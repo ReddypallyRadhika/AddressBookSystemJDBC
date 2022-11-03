@@ -6,6 +6,15 @@ public class Address {
     private long zip;
     private String state;
 
+    public Address() {
+    }
+
+    public Address(String city, long zip, String state) {
+        this.city = city;
+        this.zip = zip;
+        this.state = state;
+    }
+
     public String getCity() {
         return city;
     }
